@@ -1,73 +1,130 @@
 html,body {
     height: 100%;
     margin: 0;
+    background-color: var(--primary-color);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #222831;
+    --secondary-color: #111720;
 }
 
 header {
     height: 10%;
-    border: 1px solid black;
+    padding: 0 20px 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    background-color: var(--secondary-color);
 }
 
 .container {
     height: 80%;
-    border: 1px solid black;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scoreboard {
+    height: 20%;
+    border: 3px solid red;
+}
+
+.game-board {
+    width: 80%;
+    height: 80%;
+    background-color: var(--primary-color);
     display: grid;
     grid-template-columns: repeat(3, 0.2fr);
     grid-template-rows: repeat(3, 3fr);
     justify-content: center;
+    border: 3px solid red;
+}
+
+.game-board > button {
+    width: 100%;
+    height: 100%;
+    border: 3px solid white;
+    background-color: var(--primary-color);
 }
 
 footer {
     height: 10%;
-    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-color);
 }
 
-button {
-    width: 100%;
-    height: 100%;
+h1 {
+    margin: 0;
 }
 
-.slot-1 {
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+}
+
+#slot-1 {
     grid-column: 1;
     grid-row: 1;
+    border-top: none;
+    border-left: none;
 }
 
-.slot-2 {
+#slot-2 {
     grid-column: 2;
     grid-row: 1;
+    border-top: none;
 }
 
-.slot-3 {
+#slot-3 {
     grid-column: 3;
     grid-row: 1;
+    border-top: none;
+    border-right: none;
 }
 
-.slot-4 {
+#slot-4 {
     grid-column: 1;
+    grid-row: 2;
+    border-left: none;
+}
+
+#slot-5 {
+    grid-column: 2;
     grid-row: 2;
 }
 
-.slot-5 {
-    grid-column: 2;
-    grid-row: 2;
-}
-
-.slot-6 {
+#slot-6 {
     grid-column: 3;
     grid-row: 2;
+    border-right: none;
 }
 
-.slot-7 {
+#slot-7 {
     grid-column: 1;
     grid-row: 3;
+    border-bottom: none;
+    border-left: none;
 }
 
-.slot-8 {
+#slot-8 {
     grid-column: 2;
     grid-row: 3;
+    border-bottom: none;
 }
 
-.slot-9 {
+#slot-9 {
     grid-column: 3;
     grid-row: 3;
+    border-bottom: none;
+    border-right: none;
 }
