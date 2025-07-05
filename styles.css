@@ -2,12 +2,20 @@ html,body {
     height: 100%;
 }
 
+header {
+    height: 20%;
+}
+
 .container {
-    height: 50%;
+    height: 80%;
     display: grid;
     grid-template-columns: repeat(3, 0.2fr);
     grid-template-rows: repeat(3, 3fr);
     justify-content: center;
+}
+
+footer {
+    height: 20%;
 }
 
 button {
