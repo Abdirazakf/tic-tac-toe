@@ -1,13 +1,16 @@
 html,body {
     height: 100%;
+    margin: 0;
 }
 
 header {
-    height: 20%;
+    height: 10%;
+    border: 1px solid black;
 }
 
 .container {
     height: 80%;
+    border: 1px solid black;
     display: grid;
     grid-template-columns: repeat(3, 0.2fr);
     grid-template-rows: repeat(3, 3fr);
@@ -15,7 +18,8 @@ header {
 }
 
 footer {
-    height: 20%;
+    height: 10%;
+    border: 1px solid black;
 }
 
 button {
