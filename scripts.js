@@ -55,13 +55,13 @@
 
         const getFormData = () => {
             return {
-                player1Name: document.querySelector('input[id="player-1-name"]'),
-                player2Name: document.querySelector('input[id="player-2-name"]')
+                player1Name: document.querySelector('input[id="player-1-name"]').value,
+                player2Name: document.querySelector('input[id="player-2-name"]').value
             }
         }
 
         const clearForm = () => {
-            elements.form.clear()
+            elements.form.reset()
         }
 
         const updatePlayer1Name = (player1) => {
@@ -105,9 +105,6 @@
             gameboard.player1Score = totalStats.player1Score
             gameboard.player2Score = totalStats.player2Score
             gameboard.drawCount = totalStats.drawCount
-
-            console.log(gameboard)
-
             UI.clearBoard()
             UI.updateScoreboard(totalStats)
         }
@@ -343,7 +340,6 @@
         
         const checkPlayer1Win = () => {
             if (gameboard.gameOver && gameboard.player1Win){
-                console.log("Player 1 Wins")
                 totalStats.player1Score++
                 UI.updateScoreboard(totalStats)
                 resetArray()
@@ -394,7 +390,7 @@
     const EventController = (() => {
         const elements = UI.getElement()
         const init = () => {
-            elements.startButton.addEventListener("submit", formSubmit)
+            elements.form.addEventListener("submit", formSubmit)
             elements.slot1.addEventListener("click",Round.slot1Logic)
             elements.slot2.addEventListener("click",Round.slot2Logic)
             elements.slot3.addEventListener("click",Round.slot3Logic)
@@ -411,10 +407,10 @@
         const formSubmit = (event) => {
             event.preventDefault()
             const formData = UI.getFormData()
-            const player1 = new Player(formData.player1Name)
-            const player2 = new Player(formData.player2Name)
-            UI.updatePlayer1Name(player1)
-            UI.updatePlayer2Name(player2)
+            const player1 = new GameSetup.Player(formData.player1Name)
+            const player2 = new GameSetup.Player(formData.player2Name)
+            UI.updatePlayer1Name(player1.player_name)
+            UI.updatePlayer2Name(player2.player_name)
             handleModalClose()
         }
 
