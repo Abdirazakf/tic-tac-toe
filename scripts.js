@@ -12,16 +12,19 @@
             this.gameOver = false,
             this.moveCounter = 1
         }
-        
-        function Players (player_name){
+
+        function Player (player_name) {
             this.player_name = player_name
         }
-        
-        return {GameBoard,Players}
+
+        return {GameBoard, Player}
     })()
     
     const UI = (() => {
         const elements = {
+            startModal: document.querySelector("dialog"),
+            form: document.querySelector("form"),
+            startButton: document.querySelector(".start-button"),
             squares: document.querySelectorAll(".squares"),
             slot1: document.querySelector("#slot-1"),
             slot2: document.querySelector("#slot-2"),
@@ -34,10 +37,40 @@
             slot9: document.querySelector("#slot-9"),
             player1: document.querySelector(".player-1-score"),
             player2: document.querySelector(".player-2-score"),
-            draw: document.querySelector(".draw-count")
+            draw: document.querySelector(".draw-count"),
+            player1Header: document.querySelector(".player-1 > .header"),
+            player2Header: document.querySelector(".player-2 > .header"),
+            drawHeader: document.querySelector(".draw > .header")
         }
         
         const getElement = () => elements
+
+        const openStartModal = () => {
+            elements.startModal.showModal()
+        }
+
+        const closeStartModal = () => {
+            elements.startModal.close()
+        }
+
+        const getFormData = () => {
+            return {
+                player1Name: document.querySelector('input[id="player-1-name"]'),
+                player2Name: document.querySelector('input[id="player-2-name"]')
+            }
+        }
+
+        const clearForm = () => {
+            elements.form.clear()
+        }
+
+        const updatePlayer1Name = (player1) => {
+            elements.player1Header.textContent = `${player1} (X)`
+        }
+
+        const updatePlayer2Name = (player2) => {
+            elements.player2Header.textContent = `${player2} (O)`
+        }
 
         const updateScoreboard = (scores) => {
             elements.player1.textContent = scores.player1Score
@@ -51,7 +84,8 @@
             })
         }
         
-        return {getElement, updateScoreboard, clearBoard}
+        return {getElement, openStartModal, closeStartModal, getFormData, clearForm,
+            updatePlayer1Name, updatePlayer2Name, updateScoreboard, clearBoard}
     })()
     
     const Round = (() => {
@@ -360,6 +394,7 @@
     const EventController = (() => {
         const elements = UI.getElement()
         const init = () => {
+            elements.startButton.addEventListener("submit", formSubmit)
             elements.slot1.addEventListener("click",Round.slot1Logic)
             elements.slot2.addEventListener("click",Round.slot2Logic)
             elements.slot3.addEventListener("click",Round.slot3Logic)
@@ -372,11 +407,27 @@
 
             UI.updateScoreboard(Round.getStats())
         }
+
+        const formSubmit = (event) => {
+            event.preventDefault()
+            const formData = UI.getFormData()
+            const player1 = new Player(formData.player1Name)
+            const player2 = new Player(formData.player2Name)
+            UI.updatePlayer1Name(player1)
+            UI.updatePlayer2Name(player2)
+            handleModalClose()
+        }
+
+        const handleModalClose = () => {
+            UI.closeStartModal()
+            UI.clearForm()
+        }
         
         return {init}
     })()
     
     document.addEventListener("DOMContentLoaded", () => {
+        UI.openStartModal()
         EventController.init()
     })
     
