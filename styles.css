@@ -30,6 +30,11 @@ header {
     align-items: center;
     color: white;
     background-color: var(--secondary-color);
+    overflow: hidden;
+}
+
+header > * {
+    flex-shrink: 0;
 }
 
 header > a {
@@ -58,8 +63,8 @@ footer > a:hover {
 }
 
 .scoreboard > * {
-    width: 15%;
     height: 80%;
+    min-width: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,6 +88,7 @@ footer > a:hover {
     width: 70%;
     min-width: 700px;
     height: 80%;
+    min-height: 400px;
     background-color: var(--primary-color);
     display: grid;
     grid-template-columns: repeat(3, 0.2fr);
