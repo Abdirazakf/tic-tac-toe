@@ -6,6 +6,9 @@
             this.board = ["","","","","","","","",""],
             this.player1Win = false,
             this.player2Win = false,
+            this.player1Score = 0,
+            this.player2Score = 0,
+            this.drawCount = 0,
             this.gameOver = false,
             this.moveCounter = 1
         }
@@ -19,6 +22,7 @@
     
     const UI = (() => {
         const elements = {
+            squares: document.querySelectorAll(".squares"),
             slot1: document.querySelector("#slot-1"),
             slot2: document.querySelector("#slot-2"),
             slot3: document.querySelector("#slot-3"),
@@ -27,30 +31,63 @@
             slot6: document.querySelector("#slot-6"),
             slot7: document.querySelector("#slot-7"),
             slot8: document.querySelector("#slot-8"),
-            slot9: document.querySelector("#slot-9")
+            slot9: document.querySelector("#slot-9"),
+            player1: document.querySelector(".player-1-score"),
+            player2: document.querySelector(".player-2-score"),
+            draw: document.querySelector(".draw-count")
         }
         
         const getElement = () => elements
+
+        const updateScoreboard = (scores) => {
+            elements.player1.textContent = scores.player1Score
+            elements.player2.textContent = scores.player2Score
+            elements.draw.textContent = scores.drawCount
+        }
+
+        const clearBoard = () => {
+            elements.squares.forEach((square) => {
+                square.style.backgroundImage = ""
+            })
+        }
         
-        return {getElement}
+        return {getElement, updateScoreboard, clearBoard}
     })()
     
     const Round = (() => {
         let gameboard = new GameSetup.GameBoard()
-        let gameOver = gameboard.gameOver
-        let board = gameboard.board
         let elements = UI.getElement()
+
+        const totalStats = {
+            player1Score: 0,
+            player2Score: 0,
+            drawCount: 0
+        }
+
+        const getStats = () => totalStats
+
+        const resetArray = () => {
+            gameboard = new GameSetup.GameBoard()
+            gameboard.player1Score = totalStats.player1Score
+            gameboard.player2Score = totalStats.player2Score
+            gameboard.drawCount = totalStats.drawCount
+
+            console.log(gameboard)
+
+            UI.clearBoard()
+            UI.updateScoreboard(totalStats)
+        }
         
         const slot1Logic = () => {
-            if ((gameboard.moveCounter % 2 == 1)  && board[0] !== "X" && board[0] !== "O" && !gameOver){
-                board[0] = "X"
+            if ((gameboard.moveCounter % 2 == 1)  && gameboard.board[0] !== "X" && gameboard.board[0] !== "O" && !gameboard.gameOver){
+                gameboard.board[0] = "X"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot1.style.backgroundImage = "url(./assets/img/x.svg)"
-            } else if ((gameboard.moveCounter % 2 == 0)  && board[0] !== "O" && board[0] !== "X" && !gameOver){
-                board[0] = "O"
+            } else if ((gameboard.moveCounter % 2 == 0)  && gameboard.board[0] !== "O" && gameboard.board[0] !== "X" && !gameboard.gameOver){
+                gameboard.board[0] = "O"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot1.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
 
@@ -60,15 +97,15 @@
         }
         
         const slot2Logic = () => {
-            if ((gameboard.moveCounter % 2 == 1)  && board[1] !== "X" && board[1] !== "O" && !gameOver){
-                board[1] = "X"
+            if ((gameboard.moveCounter % 2 == 1)  && gameboard.board[1] !== "X" && gameboard.board[1] !== "O" && !gameboard.gameOver){
+                gameboard.board[1] = "X"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot2.style.backgroundImage = "url(./assets/img/x.svg)"
-            } else if ((gameboard.moveCounter % 2 == 0)  && board[1] !== "O" && board[1] !== "X" && !gameOver){
-                board[1] = "O"
+            } else if ((gameboard.moveCounter % 2 == 0)  && gameboard.board[1] !== "O" && gameboard.board[1] !== "X" && !gameboard.gameOver){
+                gameboard.board[1] = "O"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot2.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
             
@@ -78,15 +115,15 @@
         }
         
         const slot3Logic = () => {
-            if ((gameboard.moveCounter % 2 == 1)  && board[2] !== "X" && board[2] !== "O" && !gameOver){
-                board[2] = "X"
+            if ((gameboard.moveCounter % 2 == 1)  && gameboard.board[2] !== "X" && gameboard.board[2] !== "O" && !gameboard.gameOver){
+                gameboard.board[2] = "X"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot3.style.backgroundImage = "url(./assets/img/x.svg)"
-            } else if ((gameboard.moveCounter % 2 == 0)  && board[2] !== "O" && board[2] !== "X" && !gameOver){
-                board[2] = "O"
+            } else if ((gameboard.moveCounter % 2 == 0)  && gameboard.board[2] !== "O" && gameboard.board[2] !== "X" && !gameboard.gameOver){
+                gameboard.board[2] = "O"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot3.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
             
@@ -96,15 +133,15 @@
         }
 
         const slot4Logic = () => {
-            if ((gameboard.moveCounter % 2 == 1)  && board[3] !== "X" && board[3] !== "O" && !gameOver){
-                board[3] = "X"
+            if ((gameboard.moveCounter % 2 == 1)  && gameboard.board[3] !== "X" && gameboard.board[3] !== "O" && !gameboard.gameOver){
+                gameboard.board[3] = "X"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot4.style.backgroundImage = "url(./assets/img/x.svg)"
-            } else if ((gameboard.moveCounter % 2 == 0)  && board[3] !== "O" && board[3] !== "X" && !gameOver){
-                board[3] = "O"
+            } else if ((gameboard.moveCounter % 2 == 0)  && gameboard.board[3] !== "O" && gameboard.board[3] !== "X" && !gameboard.gameOver){
+                gameboard.board[3] = "O"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot4.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
 
@@ -114,15 +151,15 @@
         }
             
         const slot5Logic = () => {
-            if ((gameboard.moveCounter % 2 == 1)  && board[4] !== "X" && board[4] !== "O" && !gameOver){
-                board[4] = "X"
+            if ((gameboard.moveCounter % 2 == 1)  && gameboard.board[4] !== "X" && gameboard.board[4] !== "O" && !gameboard.gameOver){
+                gameboard.board[4] = "X"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot5.style.backgroundImage = "url(./assets/img/x.svg)"
-            } else if ((gameboard.moveCounter % 2 == 0)  && board[4] !== "O" && board[4] !== "X" && !gameOver){
-                board[4] = "O"
+            } else if ((gameboard.moveCounter % 2 == 0)  && gameboard.board[4] !== "O" && gameboard.board[4] !== "X" && !gameboard.gameOver){
+                gameboard.board[4] = "O"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot5.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
             
@@ -132,15 +169,15 @@
         }
 
         const slot6Logic = () => {
-            if ((gameboard.moveCounter % 2 == 1)  && board[5] !== "X" && board[5] !== "O" && !gameOver){
-                board[5] = "X"
+            if ((gameboard.moveCounter % 2 == 1)  && gameboard.board[5] !== "X" && gameboard.board[5] !== "O" && !gameboard.gameOver){
+                gameboard.board[5] = "X"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot6.style.backgroundImage = "url(./assets/img/x.svg)"
-            } else if ((gameboard.moveCounter % 2 == 0)  && board[5] !== "O" && board[5] !== "X" && !gameOver){
-                board[5] = "O"
+            } else if ((gameboard.moveCounter % 2 == 0)  && gameboard.board[5] !== "O" && gameboard.board[5] !== "X" && !gameboard.gameOver){
+                gameboard.board[5] = "O"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot6.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
             
@@ -150,15 +187,15 @@
         }
         
         const slot7Logic = () => {
-            if ((gameboard.moveCounter % 2 == 1)  && board[6] !== "X" && board[6] !== "O" && !gameOver){
-                board[6] = "X"
+            if ((gameboard.moveCounter % 2 == 1)  && gameboard.board[6] !== "X" && gameboard.board[6] !== "O" && !gameboard.gameOver){
+                gameboard.board[6] = "X"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot7.style.backgroundImage = "url(./assets/img/x.svg)"
-            } else if ((gameboard.moveCounter % 2 == 0)  && board[6] !== "O" && board[6] !== "X" && !gameOver){
-                board[6] = "O"
+            } else if ((gameboard.moveCounter % 2 == 0)  && gameboard.board[6] !== "O" && gameboard.board[6] !== "X" && !gameboard.gameOver){
+                gameboard.board[6] = "O"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot7.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
             
@@ -168,15 +205,15 @@
         }
       
         const slot8Logic = () => {
-            if ((gameboard.moveCounter % 2 == 1)  && board[7] !== "X" && board[7] !== "O" && !gameOver){
-                board[7] = "X"
+            if ((gameboard.moveCounter % 2 == 1)  && gameboard.board[7] !== "X" && gameboard.board[7] !== "O" && !gameboard.gameOver){
+                gameboard.board[7] = "X"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot8.style.backgroundImage = "url(./assets/img/x.svg)"
-            } else if ((gameboard.moveCounter % 2 == 0)  && board[7] !== "O" && board[7] !== "X" && !gameOver){
-                board[7] = "O"
+            } else if ((gameboard.moveCounter % 2 == 0)  && gameboard.board[7] !== "O" && gameboard.board[7] !== "X" && !gameboard.gameOver){
+                gameboard.board[7] = "O"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot8.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
             
@@ -186,15 +223,15 @@
         }
 
         const slot9Logic = () => {
-            if ((gameboard.moveCounter % 2 == 1)  && board[8] !== "X" && board[8] !== "O" && !gameOver){
-                board[8] = "X"
+            if ((gameboard.moveCounter % 2 == 1)  && gameboard.board[8] !== "X" && gameboard.board[8] !== "O" && !gameboard.gameOver){
+                gameboard.board[8] = "X"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot9.style.backgroundImage = "url(./assets/img/x.svg)"
-            } else if ((gameboard.moveCounter % 2 == 0)  && board[8] !== "O" && board[8] !== "X" && !gameOver){
-                board[8] = "O"
+            } else if ((gameboard.moveCounter % 2 == 0)  && gameboard.board[8] !== "O" && gameboard.board[8] !== "X" && !gameboard.gameOver){
+                gameboard.board[8] = "O"
                 gameboard.moveCounter++
-                console.log(gameboard.moveCounter)
+                
                 elements.slot9.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
             
@@ -204,76 +241,78 @@
         }
         
         const checkWin = () => {
-            if (board[0] == "X" && board[1] == "X" && board[2] == "X") {
+            if (gameboard.board[0] == "X" && gameboard.board[1] == "X" && gameboard.board[2] == "X") {
                 gameboard.player1Win = true
-                gameOver = true
-            } else if (board[0] == "O" && board[1] == "O" && board[2] == "O"){
+                gameboard.gameOver = true
+            } else if (gameboard.board[0] == "O" && gameboard.board[1] == "O" && gameboard.board[2] == "O"){
                 gameboard.player2Win = true
-                gameOver = true
+                gameboard.gameOver = true
             }
             
-            if (board[3] == "X" && board[4] == "X" && board[5] == "X"){
+            if (gameboard.board[3] == "X" && gameboard.board[4] == "X" && gameboard.board[5] == "X"){
                 gameboard.player1Win = true
-                gameOver = true
-            } else if (board[3] == "O" && board[4] == "O" && board[5] == "O"){
+                gameboard.gameOver = true
+            } else if (gameboard.board[3] == "O" && gameboard.board[4] == "O" && gameboard.board[5] == "O"){
                 gameboard.player2Win = true
-                gameOver = true
+                gameboard.gameOver = true
             }
             
-            if (board[6] == "X" && board[7] == "X" && board[8] == "X"){
+            if (gameboard.board[6] == "X" && gameboard.board[7] == "X" && gameboard.board[8] == "X"){
                 gameboard.player1Win = true
-                gameOver = true
-            } else if (board[6] == "O" && board[7] == "O" && board[8] == "O"){
+                gameboard.gameOver = true
+            } else if (gameboard.board[6] == "O" && gameboard.board[7] == "O" && gameboard.board[8] == "O"){
                 gameboard.player2Win = true
-                gameOver = true
+                gameboard.gameOver = true
             }
             
-            if (board[0] == "X" && board[3] == "X" && board[6] == "X"){
+            if (gameboard.board[0] == "X" && gameboard.board[3] == "X" && gameboard.board[6] == "X"){
                 gameboard.player1Win = true
-                gameOver = true
-            } else if (board[0] == "O" && board[3] == "O" && board[6] == "O"){
+                gameboard.gameOver = true
+            } else if (gameboard.board[0] == "O" && gameboard.board[3] == "O" && gameboard.board[6] == "O"){
                 gameboard.player2Win = true
-                gameOver = true
+                gameboard.gameOver = true
             }
             
-            if (board[1] == "X" && board[4] == "X" && board[7] == "X"){
+            if (gameboard.board[1] == "X" && gameboard.board[4] == "X" && gameboard.board[7] == "X"){
                 gameboard.player1Win = true
-                gameOver = true
-            } else if (board[1] == "O" && board[4] == "O" && board[7] == "O"){
+                gameboard.gameOver = true
+            } else if (gameboard.board[1] == "O" && gameboard.board[4] == "O" && gameboard.board[7] == "O"){
                 gameboard.player2Win = true
-                gameOver = true
+                gameboard.gameOver = true
             }
             
-            if (board[2] == "X" && board[5] == "X" && board[8] == "X"){
+            if (gameboard.board[2] == "X" && gameboard.board[5] == "X" && gameboard.board[8] == "X"){
                 gameboard.player1Win = true
-                gameOver = true 
-            } else if (board[2] == "O" && board[5] == "O" && board[8] == "O"){
+                gameboard.gameOver = true 
+            } else if (gameboard.board[2] == "O" && gameboard.board[5] == "O" && gameboard.board[8] == "O"){
                 gameboard.player2Win = true
-                gameOver = true
+                gameboard.gameOver = true
             }
             
-            if (board[0] == "X" && board[4] == "X" && board[8] == "X"){
+            if (gameboard.board[0] == "X" && gameboard.board[4] == "X" && gameboard.board[8] == "X"){
                 gameboard.player1Win = true
-                gameOver = true 
-            } else if (board[0] == "O" && board[4] == "O" && board[8] == "O"){
+                gameboard.gameOver = true 
+            } else if (gameboard.board[0] == "O" && gameboard.board[4] == "O" && gameboard.board[8] == "O"){
                 gameboard.player2Win = true
-                gameOver = true
+                gameboard.gameOver = true
             }
             
-            if (board[2] == "X" && board[4] == "X" && board[6] == "X"){
+            if (gameboard.board[2] == "X" && gameboard.board[4] == "X" && gameboard.board[6] == "X"){
                 gameboard.player1Win = true
-                gameOver = true 
-            } else if (board[2] == "O" && board[4] == "O" && board[6] == "O"){
+                gameboard.gameOver = true 
+            } else if (gameboard.board[2] == "O" && gameboard.board[4] == "O" && gameboard.board[6] == "O"){
                 gameboard.player2Win = true
-                gameOver = true
+                gameboard.gameOver = true
             }
             checkDraw()
         }
         
         const checkPlayer1Win = () => {
-            if (gameOver && gameboard.player1Win){
-                alert("Player 1 Win")
-                location.reload()
+            if (gameboard.gameOver && gameboard.player1Win){
+                console.log("Player 1 Wins")
+                totalStats.player1Score++
+                UI.updateScoreboard(totalStats)
+                resetArray()
                 return true
             } else {
                 return false
@@ -281,9 +320,10 @@
         }
         
         const checkPlayer2Win = () => {
-            if (gameOver && gameboard.player2Win){
-                alert("Player 2 Win")
-                location.reload()
+            if (gameboard.gameOver && gameboard.player2Win){
+                totalStats.player2Score++
+                UI.updateScoreboard(totalStats)
+                resetArray()
                 return true
             } else {
                 return false
@@ -291,17 +331,19 @@
         }
         
         const checkDraw = () => {
-            if (!gameOver || (!gameboard.player1Win && !gameboard.player2Win)){
+            if (!gameboard.gameOver || (!gameboard.player1Win && !gameboard.player2Win)){
                 let count = 0
-                for (let i = 0; i < board.length; i++){
-                    if (board[i] !== ""){
+                for (let i = 0; i < gameboard.board.length; i++){
+                    if (gameboard.board[i] !== ""){
                         count++ 
                     }
                 }
 
                 if (count >= 9){
                     alert("It's a Draw")
-                    location.reload()
+                    totalStats.drawCount++
+                    UI.updateScoreboard(totalStats)
+                    resetArray()
                     return true
                 } else {
                     return false
@@ -310,7 +352,8 @@
         }
         
         return {slot1Logic, slot2Logic, slot3Logic, slot4Logic,
-            slot5Logic, slot6Logic, slot7Logic, slot8Logic, slot9Logic
+            slot5Logic, slot6Logic, slot7Logic, slot8Logic, slot9Logic,
+            getStats
         }
     })()
     
@@ -326,6 +369,8 @@
             elements.slot7.addEventListener("click",Round.slot7Logic)
             elements.slot8.addEventListener("click",Round.slot8Logic)
             elements.slot9.addEventListener("click",Round.slot9Logic)
+
+            UI.updateScoreboard(Round.getStats())
         }
         
         return {init}

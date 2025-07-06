@@ -6,6 +6,7 @@
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="https://css.serp.co/css-reset/normalize.css/">
+    <script src="./scripts.js" defer></script>
 </head>
 <body>
     <header>
@@ -26,20 +27,21 @@
         </div>
         <div class="scoreboard">
             <div class="player-1">
-                <div>Player 1 (X)</div>
+                <div class="header">Player 1 (X)</div>
+                <div class="player-1-score"></div>
             </div>
             <div class="draw">
-                <div>Tie</div>
+                <div class="header">Tie</div>
+                <div class="draw-count"></div>
             </div>
             <div class="player-2">
-                <div>Player 2 (O)</div>
+                <div class="header">Player 2 (O)</div>
+                <div class="player-2-score"></div>
             </div>
-            <div class="current-player"></div>
         </div>
     </div>
     <footer>
         <a href="https://www.github.com/Abdirazakf" target="_blank" rel="noopener noreferrer">Copyright © 2025 Abdirazakf</a>
     </footer>
-    <script src="./scripts.js" defer></script>
 </body>
 </html>
