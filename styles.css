@@ -23,35 +23,62 @@ header {
     background-color: var(--secondary-color);
 }
 
+header > a {
+    font-size: 1.5rem;
+}
+
+header > a:hover,
+footer > a:hover {
+    color: var(--primary-color);
+}
+
 .container {
     height: 80%;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
 }
 
 .scoreboard {
+    width: 70%;
     height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     border: 3px solid red;
 }
 
+.scoreboard > * {
+    width: 15%;
+    height: 80%;
+    border: 1px solid black;
+}
+
 .game-board {
-    width: 80%;
+    width: 70%;
+    min-width: 700px;
     height: 80%;
     background-color: var(--primary-color);
     display: grid;
     grid-template-columns: repeat(3, 0.2fr);
     grid-template-rows: repeat(3, 3fr);
     justify-content: center;
-    border: 3px solid red;
 }
 
-.game-board > button {
+.squares {
     width: 100%;
     height: 100%;
     border: 3px solid white;
     background-color: var(--primary-color);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.squares:hover {
+    cursor: pointer;
 }
 
 footer {
@@ -69,7 +96,10 @@ h1 {
 a {
     text-decoration: none;
     color: white;
-    font-size: 1.5rem;
+}
+
+footer > a {
+    font-size: 1.2rem;
 }
 
 #slot-1 {

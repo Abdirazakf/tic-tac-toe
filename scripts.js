@@ -46,12 +46,12 @@
                 board[0] = "X"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot1.textContent = "X"
+                elements.slot1.style.backgroundImage = "url(./assets/img/x.svg)"
             } else if ((gameboard.moveCounter % 2 == 0)  && board[0] !== "O" && board[0] !== "X" && !gameOver){
                 board[0] = "O"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot1.textContent = "O"
+                elements.slot1.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
 
             checkWin()
@@ -64,12 +64,12 @@
                 board[1] = "X"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot2.textContent = "X"
+                elements.slot2.style.backgroundImage = "url(./assets/img/x.svg)"
             } else if ((gameboard.moveCounter % 2 == 0)  && board[1] !== "O" && board[1] !== "X" && !gameOver){
                 board[1] = "O"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot2.textContent = "O"
+                elements.slot2.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
             
             checkWin()
@@ -82,12 +82,12 @@
                 board[2] = "X"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot3.textContent = "X"
+                elements.slot3.style.backgroundImage = "url(./assets/img/x.svg)"
             } else if ((gameboard.moveCounter % 2 == 0)  && board[2] !== "O" && board[2] !== "X" && !gameOver){
                 board[2] = "O"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot3.textContent = "O"
+                elements.slot3.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
             
             checkWin()
@@ -100,12 +100,12 @@
                 board[3] = "X"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot4.textContent = "X"
+                elements.slot4.style.backgroundImage = "url(./assets/img/x.svg)"
             } else if ((gameboard.moveCounter % 2 == 0)  && board[3] !== "O" && board[3] !== "X" && !gameOver){
                 board[3] = "O"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot4.textContent = "O"
+                elements.slot4.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
 
             checkWin()
@@ -118,12 +118,12 @@
                 board[4] = "X"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot5.textContent = "X"
+                elements.slot5.style.backgroundImage = "url(./assets/img/x.svg)"
             } else if ((gameboard.moveCounter % 2 == 0)  && board[4] !== "O" && board[4] !== "X" && !gameOver){
                 board[4] = "O"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot5.textContent = "O"
+                elements.slot5.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
             
             checkWin()
@@ -136,12 +136,12 @@
                 board[5] = "X"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot6.textContent = "X"
+                elements.slot6.style.backgroundImage = "url(./assets/img/x.svg)"
             } else if ((gameboard.moveCounter % 2 == 0)  && board[5] !== "O" && board[5] !== "X" && !gameOver){
                 board[5] = "O"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot6.textContent = "O"
+                elements.slot6.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
             
             checkWin()
@@ -154,12 +154,12 @@
                 board[6] = "X"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot7.textContent = "X"
+                elements.slot7.style.backgroundImage = "url(./assets/img/x.svg)"
             } else if ((gameboard.moveCounter % 2 == 0)  && board[6] !== "O" && board[6] !== "X" && !gameOver){
                 board[6] = "O"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot7.textContent = "O"
+                elements.slot7.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
             
             checkWin()
@@ -172,12 +172,12 @@
                 board[7] = "X"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot8.textContent = "X"
+                elements.slot8.style.backgroundImage = "url(./assets/img/x.svg)"
             } else if ((gameboard.moveCounter % 2 == 0)  && board[7] !== "O" && board[7] !== "X" && !gameOver){
                 board[7] = "O"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot8.textContent = "O"
+                elements.slot8.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
             
             checkWin()
@@ -190,12 +190,12 @@
                 board[8] = "X"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot9.textContent = "X"
+                elements.slot9.style.backgroundImage = "url(./assets/img/x.svg)"
             } else if ((gameboard.moveCounter % 2 == 0)  && board[8] !== "O" && board[8] !== "X" && !gameOver){
                 board[8] = "O"
                 gameboard.moveCounter++
                 console.log(gameboard.moveCounter)
-                elements.slot9.textContent = "O"
+                elements.slot9.style.backgroundImage = "url(./assets/img/circle.svg)"
             }
             
             checkWin()
