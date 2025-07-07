@@ -24,7 +24,7 @@
         const elements = {
             startModal: document.querySelector("dialog"),
             form: document.querySelector("form"),
-            startButton: document.querySelector(".start-button"),
+            resetButton: document.querySelector(".reset-button"),
             squares: document.querySelectorAll(".squares"),
             slot1: document.querySelector("#slot-1"),
             slot2: document.querySelector("#slot-2"),
@@ -44,6 +44,10 @@
         }
         
         const getElement = () => elements
+
+        const resetWindow = () => {
+            location.reload()
+        }
 
         const openStartModal = () => {
             elements.startModal.showModal()
@@ -84,7 +88,7 @@
             })
         }
         
-        return {getElement, openStartModal, closeStartModal, getFormData, clearForm,
+        return {getElement, resetWindow, openStartModal, closeStartModal, getFormData, clearForm,
             updatePlayer1Name, updatePlayer2Name, updateScoreboard, clearBoard}
     })()
     
@@ -391,6 +395,7 @@
         const elements = UI.getElement()
         const init = () => {
             elements.form.addEventListener("submit", formSubmit)
+            elements.resetButton.addEventListener("click", UI.resetWindow)
             elements.slot1.addEventListener("click",Round.slot1Logic)
             elements.slot2.addEventListener("click",Round.slot2Logic)
             elements.slot3.addEventListener("click",Round.slot3Logic)
