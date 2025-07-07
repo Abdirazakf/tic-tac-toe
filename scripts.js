@@ -344,23 +344,19 @@
         
         const checkPlayer1Win = () => {
             if (gameboard.gameOver && gameboard.player1Win){
+                alert("Player 1 Wins")
                 totalStats.player1Score++
                 UI.updateScoreboard(totalStats)
                 resetArray()
-                return true
-            } else {
-                return false
             }
         }
         
         const checkPlayer2Win = () => {
             if (gameboard.gameOver && gameboard.player2Win){
+                alert("Player 2 Wins")
                 totalStats.player2Score++
                 UI.updateScoreboard(totalStats)
                 resetArray()
-                return true
-            } else {
-                return false
             }
         }
         
@@ -378,9 +374,6 @@
                     totalStats.drawCount++
                     UI.updateScoreboard(totalStats)
                     resetArray()
-                    return true
-                } else {
-                    return false
                 }
             }
         }
